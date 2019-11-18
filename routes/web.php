@@ -15,18 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', 'BlogController@index');
-Route::get('/blog/create', 'BlogController@create');
-Route::post('/blog', 'BlogController@store');
-Route::get('/blog/trash', 'BlogController@trash');
+// resource controllers
+// Route::resource('route_name', 'controller_name');
+Route::resource('users', 'UserController');
 
-Route::get('/blog/{id}/edit', 'BlogController@edit');
-Route::put('/blog/{id}', 'BlogController@update');
+// prefix
+Route::group(['prefix' => 'blog'], function(){
+    Route::get('/', 'BlogController@index');
+    Route::get('/create', 'BlogController@create');
+    Route::post('/', 'BlogController@store');
+    Route::get('/trash', 'BlogController@trash');
 
-Route::get('/blog/{id}', 'BlogController@show');
+    Route::get('/{id}/edit', 'BlogController@edit');
+    Route::put('/{id}', 'BlogController@update');
+
+    Route::get('/{id}', 'BlogController@show');
 
 
-Route::delete('/blog/{id}/delete', 'BlogController@delete');
-Route::delete('/blog/{id}/force_delete', 'BlogController@forceDelete');
+    Route::delete('/{id}/delete', 'BlogController@delete');
+    Route::delete('/{id}/force_delete', 'BlogController@forceDelete');
 
-Route::post('/blog/{id}/restore', 'BlogController@restore');
+    Route::post('/{id}/restore', 'BlogController@restore');
+});
