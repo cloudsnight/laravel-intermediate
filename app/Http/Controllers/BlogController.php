@@ -9,7 +9,9 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
+        // $blogs = Blog::all();
+        // Paginate
+        $blogs = Blog::paginate(5);
         return view('blog/home', ['blogs' => $blogs]);
     }
 

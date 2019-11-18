@@ -13,6 +13,11 @@
       display: flex;
       width: 100px;
     }
+
+    .pagination>li{
+      list-style: none;
+      display: inline;
+    }
   </style>
 @endsection
 
@@ -39,4 +44,11 @@
       </li>
     @endforeach
   </ul>
+
+  {{-- Pagination menggunakan metode links --}}
+  {{-- {{ $blogs->links() }} --}}
+
+  {{-- Pagination menggunakan metode render denga chain append() --}}
+  {{-- Fungsi Request::input() dalam appends adalah untuk tidak menghilangkan tambahan ex: cat=htm&page=1 bilamana berganti page-nya --}}
+  {{ $blogs->appends(Request::input())->render() }}
 @endsection
