@@ -35,6 +35,9 @@ class BlogController extends Controller
         ]);
         
         return redirect('blog');
+
+        // Route ... ->name('test')
+        // return redirect()->route('test');
     }
 
     public function edit($id)
@@ -72,5 +75,20 @@ class BlogController extends Controller
     {
         Blog::withTrashed()->find($id)->restore();
         return redirect('blog');
+    }
+
+    public function test_page()
+    {
+        return view('blog/test_page');
+    }
+
+    public function testing(Request $request)
+    {
+        // Lihat metodenya
+        if($request->isMethod("GET")){
+            dd('ini adalah GET');
+        }else{
+            dd('ini adalah post');
+        }
     }
 }

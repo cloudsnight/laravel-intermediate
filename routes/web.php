@@ -15,18 +15,28 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/blog', 'BlogController@index');
-Route::get('/blog/create', 'BlogController@create');
-Route::post('/blog', 'BlogController@store');
-Route::get('/blog/trash', 'BlogController@trash');
+// Metode prefix
+Route::group(['prefix' => 'blog'], function(){
+    // Pemberian nama alias pada route
+    // Route::match(['get', 'post'], 'blog/testing', 'BlogController@testing')->name('test');
+    Route::match(['get', 'post'], '/testing', 'BlogController@testing');
 
-Route::get('/blog/{id}/edit', 'BlogController@edit');
-Route::put('/blog/{id}', 'BlogController@update');
+    Route::get('/test_page', 'BlogController@test_page');
 
-Route::get('/blog/{id}', 'BlogController@show');
+    Route::get('/', 'BlogController@index');
+    Route::get('/create', 'BlogController@create');
+    Route::post('/', 'BlogController@store');
+    Route::get('/trash', 'BlogController@trash');
+
+    Route::get('/{id}/edit', 'BlogController@edit');
+    Route::put('/{id}', 'BlogController@update');
+
+    Route::get('/{id}', 'BlogController@show');
 
 
-Route::delete('/blog/{id}/delete', 'BlogController@delete');
-Route::delete('/blog/{id}/force_delete', 'BlogController@forceDelete');
+    Route::delete('/{id}/delete', 'BlogController@delete');
+    Route::delete('/{id}/force_delete', 'BlogController@forceDelete');
 
-Route::post('/blog/{id}/restore', 'BlogController@restore');
+    Route::post('/{id}/restore', 'BlogController@restore');
+});
+
