@@ -1,0 +1,14 @@
+#blog{
+  background: darkred;
+  color: white;
+}
+
+#btn-action{
+  display: flex;
+  width: 100px;
+}
+
+.pagination>li{
+  list-style: none;
+  display: inline;
+}

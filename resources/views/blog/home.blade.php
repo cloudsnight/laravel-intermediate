@@ -3,22 +3,7 @@
 @section('title', 'Blog Page')
 
 @section('style')
-  <style>
-    #blog{
-      background: darkred;
-      color: white;
-    }
-    
-    #btn-action{
-      display: flex;
-      width: 100px;
-    }
-
-    .pagination>li{
-      list-style: none;
-      display: inline;
-    }
-  </style>
+  <link rel="stylesheet" href="/css/home.css">
 @endsection
 
 @section('content')
@@ -51,4 +36,8 @@
   {{-- Pagination menggunakan metode render denga chain append() --}}
   {{-- Fungsi Request::input() dalam appends adalah untuk tidak menghilangkan tambahan ex: cat=htm&page=1 bilamana berganti page-nya --}}
   {{ $blogs->appends(Request::input())->render() }}
+@endsection
+
+@section('script')
+  <script src="/js/home.js"></script>
 @endsection

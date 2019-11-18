@@ -26,5 +26,7 @@
   <footer>
     <p>&copy; Laravel dan Sekolahkoding 2016 - 2019</p>
   </footer>
+
+  @yield('script')
 </body>
 </html>
