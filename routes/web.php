@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// profile dengan sistem auth
+Route::get('/profile', 'UserController@profile')->middleware('auth');
+
 Route::get('/blog', 'BlogController@index');
 Route::get('/blog/create', 'BlogController@create');
 Route::post('/blog', 'BlogController@store');
