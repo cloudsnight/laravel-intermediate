@@ -30,3 +30,6 @@ Route::delete('/blog/{id}/delete', 'BlogController@delete');
 Route::delete('/blog/{id}/force_delete', 'BlogController@forceDelete');
 
 Route::post('/blog/{id}/restore', 'BlogController@restore');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
