@@ -27,6 +27,12 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
+        // Validasi
+        $this->validate($request, [
+            'title' => 'required|min:4|max:15',
+            'description' => 'required|max:255'
+        ]);
+
         Blog::create([
             'title' => $request->title,
             'description' => $request->description
