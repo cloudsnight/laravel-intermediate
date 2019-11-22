@@ -30,12 +30,27 @@ class BlogController extends Controller
         // Validasi
         $this->validate($request, [
             'title' => 'required|min:4|max:15',
-            'description' => 'required|max:255'
+            'description' => 'required|max:255',
+            'featured_img' => 'mimes:jpeg,jpg,png|max:1000'
         ]);
+
+        // Upload Image dengan penamaan default
+        // $request->file('featured_img')->store('img');
+
+        // cek uplaod image
+        // die('upload image done !');
+
+        // Upload image dengan penamaan custom
+        // referensi dari folder vendor pada Http/UploadedFile.php
+
+        // Membuat filename untuk parameter kedua storeAs
+        $filename = time(). '.png';
+        $request->file('featured_img')->storeAs('public/img', $filename);
 
         Blog::create([
             'title' => $request->title,
-            'description' => $request->description
+            'description' => $request->description,
+            'featured_img' => $filename
         ]);
         
         return redirect('blog');
