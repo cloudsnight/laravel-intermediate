@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Blog;
+// Menggunakan BlogPosted
+use App\Mail\BlogPosted;
+// Tambahkan library Mail
+use Illuminate\Support\Facades\Mail;
 
 class BlogController extends Controller
 {
@@ -33,11 +37,18 @@ class BlogController extends Controller
             'description' => 'required|max:255'
         ]);
 
-        Blog::create([
-            'title' => $request->title,
-            'description' => $request->description
-        ]);
         
+        // Blog::create([
+        //     'title' => $request->title,
+        //     'description' => $request->description
+        // ]);
+            
+        // Mengirim email
+        // Mail::to(); parameternya bisa dijadikan value dinamis
+        // Mail::to('muhsin@email.com')->send(new BlogPosted());
+        
+        Mail::to('muhsin@email.com')->send(new BlogPosted());
+
         return redirect('blog');
     }
 
